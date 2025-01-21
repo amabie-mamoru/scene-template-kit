@@ -23,3 +23,9 @@ Let's enjoy 🧜
 Push [生成する] button in dialog.
 
 ![](./Documentation~/images/generate-sample-dialog.png)
+
+or
+
+Generate sample in sample tab in Unity Package Manager
+
+![](./Documentation~/images/generate-sample-by-upm.png)
