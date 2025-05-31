@@ -17,9 +17,9 @@ namespace com.amabie.SceneTemplateKit
         private List<SceneBase> sceneList;
         private List<TransitionBase> transitionList; 
 
-        protected new void Awake()
+        protected new void Start()
         {
-            base.Awake();
+            base.Start();
             Instantiate(eventSystemPrefab);
             CreateScene();
             CreateTransition();
