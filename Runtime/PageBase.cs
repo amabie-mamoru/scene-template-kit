@@ -5,7 +5,7 @@ namespace com.amabie.SceneTemplateKit
 {
     public class PageBase : MonoBehaviour
     {
-        protected void Awake()
+        protected void Start()
         {
             Disable().Forget();
         }
@@ -33,7 +33,7 @@ namespace com.amabie.SceneTemplateKit
             await OnDisabled();
         }
 
-        private void ToggleScene(bool isActive)
+        protected void ToggleScene(bool isActive)
         {
             for(var i = 0; i < transform.childCount; i++)
             {

@@ -9,13 +9,14 @@ namespace com.amabie.SceneTemplateKit
 {
     public class SceneHandler : SingletonMonoBehaviour<SceneHandler>
     {
-        [SerializeField] private string landingSceneName;
-        [SerializeField] private List<SceneBase> scenePrefabList;
-        [SerializeField] private List<TransitionBase> transitionPrefabList;
-        [SerializeField] private EventSystem eventSystemPrefab;
+        [SerializeField] protected string landingSceneName;
+        [SerializeField] protected List<SceneBase> scenePrefabList;
+        [SerializeField] protected List<TransitionBase> transitionPrefabList;
+        [SerializeField] protected EventSystem eventSystemPrefab;
 
-        private List<SceneBase> sceneList;
-        private List<TransitionBase> transitionList; 
+        protected List<SceneBase> sceneList;
+        protected List<TransitionBase> transitionList;
+        protected bool isInitialized;
 
         protected new void Start()
         {
@@ -23,24 +24,32 @@ namespace com.amabie.SceneTemplateKit
             Instantiate(eventSystemPrefab);
             CreateScene();
             CreateTransition();
+            isInitialized = true;
         }
 
-        private void CreateScene()
+        protected void CreateScene()
         {
             var root = new GameObject("SceneRoot");
             sceneList = new();
             scenePrefabList.ForEach(scenePrefab => {
                 var scene = Instantiate(scenePrefab, root.transform);
                 sceneList.Add(scene);
-                if (landingSceneName == scenePrefab.name) scene.Enable().Forget();
+                if (landingSceneName == scenePrefab.name) EnableLandingScene(scene).Forget();
             });
         }
 
-        private void CreateTransition()
+        protected async UniTask EnableLandingScene(SceneBase scene)
+        {
+            await UniTask.WaitUntil(() => isInitialized);
+            scene.Enable().Forget();
+        }
+
+        protected void CreateTransition()
         {
             var root = new GameObject("TransitionRoot");
             transitionList = new();
-            transitionPrefabList.ForEach(transitionPrefab => {
+            transitionPrefabList.ForEach(transitionPrefab =>
+            {
                 var transition = Instantiate(transitionPrefab, root.transform);
                 transitionList.Add(transition);
             });
