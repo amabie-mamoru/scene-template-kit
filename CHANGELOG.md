@@ -4,6 +4,12 @@
 
 nothing
 
+## [1.0.5] - 2025-06-03
+
+### Added
+
+* validate EventSystem
+
 ## [1.0.4] - 2025-06-02
 
 ### Removed
