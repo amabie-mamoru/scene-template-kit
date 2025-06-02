@@ -4,6 +4,13 @@
 
 nothing
 
+
+## [1.0.3] - 2025-06-02
+
+### Modified
+
+* add "virtual" modifier in Start() of PageBase
+
 ## [1.0.2] - 2025-06-01
 
 ### Modified
