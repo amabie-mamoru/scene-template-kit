@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using com.amabie.SingletonKit;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace com.amabie.SceneTemplateKit
 {
@@ -16,19 +18,31 @@ namespace com.amabie.SceneTemplateKit
         protected List<TransitionBase> transitionList;
         protected bool isInitialized;
 
-        protected new void Start()
+        protected override void Start()
         {
             base.Start();
+            ValidateEventSystem();
             CreateScene();
             CreateTransition();
             isInitialized = true;
+        }
+
+        protected void ValidateEventSystem()
+        {
+            var eventSystem = FindFirstObjectByType<EventSystem>();
+            // EventSystem がないとボタンの onClick が反応しないのでチェックする
+            if (eventSystem == null)
+            {
+                throw new SceneHandlerException("EventSystem をシーンに配置してください");
+            }
         }
 
         protected void CreateScene()
         {
             var root = new GameObject("SceneRoot");
             sceneList = new();
-            scenePrefabList.ForEach(scenePrefab => {
+            scenePrefabList.ForEach(scenePrefab =>
+            {
                 var scene = Instantiate(scenePrefab, root.transform);
                 sceneList.Add(scene);
                 if (landingSceneName == scenePrefab.name) EnableLandingScene(scene).Forget();
@@ -61,5 +75,10 @@ namespace com.amabie.SceneTemplateKit
         {
             return transitionList.FirstOrDefault(transition => transition is T).GetComponent<T>();
         }
+    }
+
+    public class SceneHandlerException : Exception
+    {
+        public SceneHandlerException(string message) : base(message) { }
     }
 }
