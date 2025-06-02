@@ -5,7 +5,7 @@ namespace com.amabie.SceneTemplateKit
 {
     public class PageBase : MonoBehaviour
     {
-        protected void Start()
+        protected virtual void Start()
         {
             Disable().Forget();
         }
