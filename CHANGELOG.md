@@ -4,6 +4,11 @@
 
 nothing
 
+## [1.0.4] - 2025-06-02
+
+### Removed
+
+* remove EventSystem instantiate process
 
 ## [1.0.3] - 2025-06-02
 

@@ -3,7 +3,6 @@ using System.Linq;
 using com.amabie.SingletonKit;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace com.amabie.SceneTemplateKit
 {
@@ -12,7 +11,6 @@ namespace com.amabie.SceneTemplateKit
         [SerializeField] protected string landingSceneName;
         [SerializeField] protected List<SceneBase> scenePrefabList;
         [SerializeField] protected List<TransitionBase> transitionPrefabList;
-        [SerializeField] protected EventSystem eventSystemPrefab;
 
         protected List<SceneBase> sceneList;
         protected List<TransitionBase> transitionList;
@@ -21,7 +19,6 @@ namespace com.amabie.SceneTemplateKit
         protected new void Start()
         {
             base.Start();
-            Instantiate(eventSystemPrefab);
             CreateScene();
             CreateTransition();
             isInitialized = true;
