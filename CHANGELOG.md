@@ -4,6 +4,13 @@
 
 nothing
 
+## [1.1.0] - 2025-06-14
+
+### Added
+
+* GetScene Method with sceneName
+* GetTransition Method with transitionName
+
 ## [1.0.5] - 2025-06-03
 
 ### Added

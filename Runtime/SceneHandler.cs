@@ -14,8 +14,8 @@ namespace com.amabie.SceneTemplateKit
         [SerializeField] protected List<SceneBase> scenePrefabList;
         [SerializeField] protected List<TransitionBase> transitionPrefabList;
 
-        protected List<SceneBase> sceneList;
-        protected List<TransitionBase> transitionList;
+        protected Dictionary<string, SceneBase> sceneDict = new();
+        protected Dictionary<string, TransitionBase> transitionDict = new();
         protected bool isInitialized;
 
         protected override void Start()
@@ -40,11 +40,10 @@ namespace com.amabie.SceneTemplateKit
         protected void CreateScene()
         {
             var root = new GameObject("SceneRoot");
-            sceneList = new();
             scenePrefabList.ForEach(scenePrefab =>
             {
                 var scene = Instantiate(scenePrefab, root.transform);
-                sceneList.Add(scene);
+                sceneDict.Add(scene.name, scene);
                 if (landingSceneName == scenePrefab.name) EnableLandingScene(scene).Forget();
             });
         }
@@ -58,22 +57,31 @@ namespace com.amabie.SceneTemplateKit
         protected void CreateTransition()
         {
             var root = new GameObject("TransitionRoot");
-            transitionList = new();
             transitionPrefabList.ForEach(transitionPrefab =>
             {
                 var transition = Instantiate(transitionPrefab, root.transform);
-                transitionList.Add(transition);
+                transitionDict.Add(transition.name, transition);
             });
         }
 
         public T GetScene<T>()
         {
-            return sceneList.FirstOrDefault(scene => scene is T).GetComponent<T>();
+            return sceneDict.Values.FirstOrDefault(scene => scene is T).GetComponent<T>();
         }
 
         public T GetTransition<T>()
         {
-            return transitionList.FirstOrDefault(transition => transition is T).GetComponent<T>();
+            return transitionDict.Values.FirstOrDefault(transition => transition is T).GetComponent<T>();
+        }
+
+        public SceneBase GetScene(string name)
+        {
+            return sceneDict.FirstOrDefault(kvp => kvp.Key == name).Value;
+        }
+
+        public TransitionBase GetTransition(string name)
+        {
+            return transitionDict.FirstOrDefault(kvp => kvp.Key == name).Value;
         }
     }
 
