@@ -17,6 +17,7 @@ namespace com.amabie.SceneTemplateKit
         protected Dictionary<string, SceneBase> sceneDict = new();
         protected Dictionary<string, TransitionBase> transitionDict = new();
         protected bool isInitialized;
+        public bool IsInitialized => isInitialized;
 
         protected override void Start()
         {

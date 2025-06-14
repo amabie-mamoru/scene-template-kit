@@ -4,6 +4,12 @@
 
 nothing
 
+## [1.2.0] - 2025-06-15
+
+### Added
+
+* Making isInitialized property public
+
 ## [1.1.0] - 2025-06-14
 
 ### Added
