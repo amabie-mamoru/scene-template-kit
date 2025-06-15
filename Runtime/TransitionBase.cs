@@ -8,6 +8,7 @@ namespace com.amabie.SceneTemplateKit
         {
             var scene = SceneHandler.Instance.GetScene<T>();
             await scene.Enable();
+            SceneHandler.Instance.ChangeScene(scene);
             Disable().Forget();
         }
     }
