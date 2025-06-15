@@ -41,6 +41,7 @@ namespace com.amabie.SceneTemplateKit
         protected void CreateScene()
         {
             var root = new GameObject("SceneRoot");
+            root.AddComponent<SceneRoot>();
             scenePrefabList.ForEach(scenePrefab =>
             {
                 var scene = Instantiate(scenePrefab, root.transform);

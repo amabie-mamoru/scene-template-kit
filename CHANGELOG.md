@@ -4,6 +4,12 @@
 
 nothing
 
+## [1.3.0] - 2025-06-15
+
+### Added
+
+* add SceneRoot component
+
 ## [1.2.1] - 2025-06-15
 
 ### Added
