@@ -4,6 +4,12 @@
 
 nothing
 
+## [1.3.2] - 2025-06-15
+
+### Modified
+
+* add setter to avoid "The same field name is serialized multiple times in the class or its parent class" error.
+
 ## [1.3.1] - 2025-06-15
 
 ### Modified

@@ -5,19 +5,19 @@ namespace com.amabie.SceneTemplateKit
 {
     public class PageBase : MonoBehaviour
     {
-        protected virtual bool alwaysDisplayed { get; set; }
+        protected bool alwaysDisplayed;
         protected virtual void Start()
         {
             if (alwaysDisplayed) return;
             Disable().Forget();
         }
 
-        #pragma warning disable CS1998
+#pragma warning disable CS1998
         protected virtual async UniTask OnEnabled()
         {
         }
 
-        #pragma warning disable CS1998
+#pragma warning disable CS1998
         protected virtual async UniTask OnDisabled()
         {
 
@@ -39,11 +39,16 @@ namespace com.amabie.SceneTemplateKit
 
         protected void ToggleScene(bool isActive)
         {
-            for(var i = 0; i < transform.childCount; i++)
+            for (var i = 0; i < transform.childCount; i++)
             {
                 var child = transform.GetChild(i);
                 child.gameObject.SetActive(isActive);
             }
+        }
+
+        protected void EnableAlwaysDisplayed()
+        {
+            alwaysDisplayed = true;
         }
     }
 }
