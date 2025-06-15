@@ -5,8 +5,10 @@ namespace com.amabie.SceneTemplateKit
 {
     public class PageBase : MonoBehaviour
     {
+        protected virtual bool alwaysDisplayed { get; set; }
         protected virtual void Start()
         {
+            if (alwaysDisplayed) return;
             Disable().Forget();
         }
 
@@ -23,12 +25,14 @@ namespace com.amabie.SceneTemplateKit
 
         public async UniTask Enable()
         {
+            if (alwaysDisplayed) return;
             ToggleScene(true);
             await OnEnabled();
         }
 
         public async UniTask Disable()
         {
+            if (alwaysDisplayed) return;
             ToggleScene(false);
             await OnDisabled();
         }
