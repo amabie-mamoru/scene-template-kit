@@ -1,5 +1,8 @@
 using UnityEngine;
 
-public class SceneRoot : MonoBehaviour
+namespace com.amabie.SceneTemplateKit
 {
+    public class SceneRoot : MonoBehaviour
+    {
+    }
 }
