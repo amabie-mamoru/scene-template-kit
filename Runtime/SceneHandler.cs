@@ -56,6 +56,7 @@ namespace com.amabie.SceneTemplateKit
         {
             await UniTask.WaitUntil(() => isInitialized);
             scene.Enable().Forget();
+            ChangeScene(scene);
         }
 
         protected void CreateTransition()
