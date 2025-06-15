@@ -18,6 +18,8 @@ namespace com.amabie.SceneTemplateKit
         protected Dictionary<string, TransitionBase> transitionDict = new();
         protected bool isInitialized;
         public bool IsInitialized => isInitialized;
+        protected SceneBase currentScene;
+        public SceneBase CurrentScene => currentScene;
 
         protected override void Start()
         {
@@ -64,6 +66,11 @@ namespace com.amabie.SceneTemplateKit
                 var transition = Instantiate(transitionPrefab, root.transform);
                 transitionDict.Add(transition.name, transition);
             });
+        }
+
+        public void ChangeScene(SceneBase scene)
+        {
+            currentScene = scene;
         }
 
         public T GetScene<T>()

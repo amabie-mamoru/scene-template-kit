@@ -4,6 +4,13 @@
 
 nothing
 
+## [1.4.0] - 2026-06-15
+
+### Added
+
+* CurrentScene property
+* ChangeScene method
+
 ## [1.3.2] - 2025-06-15
 
 ### Modified
